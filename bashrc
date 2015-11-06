@@ -1,3 +1,9 @@
+# add this to you bashrc
+#[[ -s "/home/mnezerka/unix-conf/bashrc" ]] && source "/home/mnezerka/unix-conf/bashrc"
+
+# if git_psi1 is missing, add this to you bashrc
+# source /usr/share/git-core/contrib/completion/git-prompt.sh
+
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color) color_prompt=yes;;
