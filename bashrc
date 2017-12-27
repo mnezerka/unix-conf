@@ -20,4 +20,4 @@ else
 fi
 unset color_prompt force_color_prompt
 
-export PATH=$PATH:~/conf/bin
+export PATH=$PATH:~/conf/bin:~/bin
