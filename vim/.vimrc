@@ -56,6 +56,7 @@ let g:NERDTreeWinSize=40
 :nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " color blueboy
+set background=dark
 colorscheme solarized
 
 " Syntastic
@@ -65,41 +66,6 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_javascript_checkers = ['eslint']
-
-" Tagbar for go language 
-"let g:tagbar_type_go = {
-"    \ 'ctagstype' : 'go',
-"    \ 'kinds'     : [
-"        \ 'p:package',
-"        \ 'i:imports:1',
-"        \ 'c:constants',
-"        \ 'v:variables',
-"        \ 't:types',
-"        \ 'n:interfaces',
-"        \ 'w:fields',
-"        \ 'e:embedded',
-"        \ 'm:methods',
-"        \ 'r:constructor',
-"        \ 'f:functions'
-"    \ ],
-"    \ 'sro' : '.',
-"    \ 'kind2scope' : {
-"        \ 't' : 'ctype',
-"        \ 'n' : 'ntype'
-"    \ },
-"    \ 'scope2kind' : {
-"        \ 'ctype' : 't',
-"        \ 'ntype' : 'n'
-"    \ },
-"    \ 'ctagsbin'  : 'gotags',
-"    \ 'ctagsargs' : '-sort -silent'
-"\ }
-
-autocmd FileType go call SetGoOptions()
-function! SetGoOptions()
-"setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab makeprg=php-xdebug\ %
-    :call tagbar#autoopen(0)
-endfunction
 
 " automatically open quick fix window after make
 autocmd QuickFixCmdPost * nested cwindow | redraw!
