@@ -67,6 +67,11 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_javascript_checkers = ['eslint']
 
+augroup svelte_ft
+  au!
+  autocmd BufNewFile,BufRead *.svelte   set syntax=html
+augroup END
+
 " automatically open quick fix window after make
 autocmd QuickFixCmdPost * nested cwindow | redraw!
 
