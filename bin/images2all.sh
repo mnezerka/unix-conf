@@ -84,6 +84,10 @@ fi
 
 for f in *
 do
+    if [[ -d "$f" ]]; then
+        echo "Skipping directory $f"
+        continue
+    fi
     echo "Processing $f"
     if [[ "$action_middle" = true ]]; then
         resize $f $middle_max_size $dir_middle
