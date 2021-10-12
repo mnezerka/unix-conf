@@ -56,8 +56,8 @@ let g:NERDTreeWinSize=40
 :nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " color blueboy
-set background=dark
-colorscheme solarized
+"set background=dark
+"colorscheme solarized
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
@@ -83,3 +83,5 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 set wildignore+=*/.git/*,*/tmp/*,*/node_modules/*,*/vendor/*,*.so,*.swp,*.zip,*pyc
 
 set modelines=3
+
+autocmd BufRead,BufNewFile   *.go setlocal ts=4 sw=4 noexpandtab autoindent
