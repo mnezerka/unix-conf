@@ -85,3 +85,6 @@ set wildignore+=*/.git/*,*/tmp/*,*/node_modules/*,*/vendor/*,*.so,*.swp,*.zip,*p
 set modelines=3
 
 autocmd BufRead,BufNewFile   *.go setlocal ts=4 sw=4 noexpandtab autoindent
+
+let g:markdown_folding = 1
+
