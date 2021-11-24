@@ -36,8 +36,15 @@ brew install stow
 ```
 
 ## Vim
-Execute following command in `./vim` directory to init/uddate all vim plugins:
 
-```
+Execute following command in `./vim` directory to init/uddate all vim plugins:
+```bash
 ./vim-install-plugins.sh
+```
+
+Create symlinks
+```bash
+cd
+ln -s unix-conf/vim/.vim .vim
+ln -s unix-conf/vim/.vimrc .vimrc
 ```
