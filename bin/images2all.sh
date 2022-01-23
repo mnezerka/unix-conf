@@ -42,18 +42,24 @@ function resize() {
         exit 1
     fi
 
+    # this doesn't work yet
+    if [[ -f "$3/$1" ]]; then
+        echo "Skipped, target image already exists"
+        return
+    fi
+
     # resize without sharpening
-    echo "Resizing $1 to $2x$2px -> $3/$1"
-    convert $1 -auto-orient -resize $2x$2 -quality 99 $3/$1
+    #disabled echo "Resizing $1 to $2x$2px -> $3/$1"
+    #disabled convert $1 -auto-orient -resize $2x$2 -quality 99 $3/$1
 
     # resize with sharpening
     sharp_filename=$(add_suffix $1 _sharp)
     echo "Resizing $1 to $2x$2px -> $3/$sharp_filename"
-    convert $1 -auto-orient -resize $2x$2 -unsharp 0x0.55+0.55+0.008 -quality 99 $3/$sharp_filename
+    # radius,sigma,amount, treshold
+    convert $1 -auto-orient -resize $2x$2 -unsharp 0x0.55+0.45+0.008 -quality 99 $3/$sharp_filename
 }
 
-# MAIN 
-
+# MAIN
 
 actions="mw"
 action_middle=false
