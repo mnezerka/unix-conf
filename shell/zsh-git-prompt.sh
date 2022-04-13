@@ -7,7 +7,7 @@ autoload -U colors && colors # Enable colors in prompt
 
 # Echoes a username/host string when connected over SSH (empty otherwise)
 ssh_info() {
-  [[ "$SSH_CONNECTION" != '' ]] && echo '%(!.%{$fg[red]%}.%{$fg[yellow]%})%n%{$reset_color%}@%{$fg[green]%}%m%{$reset_color%}:' || echo ''
+  [[ "$SSH_CONNECTION" != '' ]] && echo "%(!.%{$fg[red]%}.%{$fg[yellow]%})%n%{$reset_color%}@%{$fg[green]%}%m%{$reset_color%}:" || echo ''
 }
 
 # Echoes information about Git repository status when inside a Git repository
@@ -57,17 +57,23 @@ git_info() {
   fi
 
   local -a GIT_INFO
-  GIT_INFO+=( "\033[38;5;15m±" )
-  [ -n "$GIT_STATUS" ] && GIT_INFO+=( "$GIT_STATUS" )
+  # plus/minus sign
+  # GIT_INFO+=( "\033[38;5;15m±" )
+
+  # arrows and numbers of commits behind/in front of origin
   [[ ${#DIVERGENCES[@]} -ne 0 ]] && GIT_INFO+=( "${(j::)DIVERGENCES}" )
+
+  # state of the repo - colored circles
   [[ ${#FLAGS[@]} -ne 0 ]] && GIT_INFO+=( "${(j::)FLAGS}" )
-  GIT_INFO+=( "\033[38;5;15m$GIT_LOCATION%{$reset_color%}" )
-  echo "${(j: :)GIT_INFO}"
+
+  # name of the branch
+  GIT_INFO+=( "%{$reset_color%}$GIT_LOCATION" )
+
+  echo "$reset_color(${(j: :)GIT_INFO})"
 
 }
 
 # Use $ as the non-root prompt character; # for root
 # Change the prompt character color if the last command had a nonzero exit code
-PS1='
-$(ssh_info)%{$fg[magenta]%}%~%u $(git_info) %(?.%{$fg[blue]%}.%{$fg[red]%})%(!.#.$)%{$reset_color%} '
+PS1='$(ssh_info)%{$fg[magenta]%}%~%u $(git_info) %(?.%{$fg[blue]%}.%{$fg[red]%})%(!.#.$)%{$reset_color%} '
 
