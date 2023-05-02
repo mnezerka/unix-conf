@@ -86,7 +86,7 @@ function usage() {
     echo
     echo "Where ACTION is string composed of:"
     echo "  m - resize images to middle size (longer side ${middle_max_size})"
-    echo "  w - resize images to www size (longer side ${www_max_size}"
+    echo "  w - resize images to www size (longer side ${www_max_size})"
     echo "  l - rename all files to lowercase before resizing"
 }
 
