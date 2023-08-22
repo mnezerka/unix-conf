@@ -40,6 +40,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
 
+
 set tabstop=4
 set expandtab
 set shiftwidth=4
@@ -57,7 +58,13 @@ set number
 set listchars=trail:@,tab:>-
 set list
 
-colorscheme mariana
+set wildignore+=*/.git/*,*/tmp/*,*/node_modules/*,*/vendor/*,*.so,*.swp,*.zip,*pyc
+
+" disable background of starry colorscheme
+" let starry_disable_background = v:true
+
+" alternative is colorscheme mariana
+lua require('starry.functions').change_style("mariana")
 
 " ---- NERDTree stuff
 map <F12> :NERDTreeToggle<CR>
