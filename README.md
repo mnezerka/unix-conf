@@ -2,6 +2,18 @@
 Warning: All stuff you see here was created to support me in unix shell
 environment. So be careful :-)
 
+## Bash config unification
+
+create ~/.bash_profile` as:
+```bash
+# run .bashrc for both login and non-login shells
+if [ -f $HOME/.bashrc ]; then
+        source $HOME/.bashrc
+fi
+```
+
+put all configuration into `~/.bashrc`
+
 ## Shell enhancements
 
 Install zsh:
@@ -48,3 +60,17 @@ cd
 ln -s unix-conf/vim/.vim .vim
 ln -s unix-conf/vim/.vimrc .vimrc
 ```
+
+## NeoVim (nvim)
+
+Create symlinks
+```bash
+cd
+mkdir -p .config/nvim
+ln -s ~/unix-conf/nvim/init.vim .config/nvim/init.vim
+```
+
+Start nvim and run command `:PlugInstall` to install all plugins
+echo "processing .bash_profile"
+
+
