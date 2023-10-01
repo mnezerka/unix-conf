@@ -51,7 +51,8 @@ function resize() {
     # resize with sharpening
     # this is tip how to specify unsharp mask parameters based on
     # image size: https://redskiesatnight.com/2005/04/06/sharpening-using-image-magick/
-    sharp_filename=$(add_suffix $1 _sharp)
+    #sharp_filename=$(add_suffix $1 _sharp)
+    sharp_filename=$1
     echo "  .resize $1 to $2x$2px -> $3/$sharp_filename"
     # radius,sigma,amount, treshold
     convert $1 -auto-orient -resize $2x$2 -unsharp 0x0.55+0.45+0.008 -quality 99 $3/$sharp_filename
