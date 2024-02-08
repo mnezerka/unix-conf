@@ -26,10 +26,21 @@ do
     # get date and time of exposure from EXIF and convert it to YYMMDD_HHMMSS format
     datetimeoriginal=$(identify -format '%[EXIF:DateTimeOriginal]' $f | sed 's/://g' | sed 's/ /_/g')
 
-    filename=$(basename -- "$f")
-    extension="${filename##*.}"
-    #filename="${filename%.*}"
+    fname=$(basename -- "$f")
+    extension="${fname##*.}"
+    fnamenew="$datetimeoriginal.$extension"
 
-    echo "$f -> $datetimeoriginal.$extension"
-    mv $f "$datetimeoriginal.$extension"
+    # check if destination file already exists
+    if [[ -f "$fnamenew" ]]; then
+        echo "file $fnamenew already exists, adding random suffix"
+        fnamenew="$fnamenew$RANDOM"
+
+        if [[ -f "$fnamenew" ]]; then
+            echo "file with random suffix already exists, skipping"
+            continue
+        fi
+    fi
+
+    echo "$f -> $fnamenew"
+    mv $f "$fnamenew"
 done
