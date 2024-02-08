@@ -54,6 +54,9 @@ call plug#end()
 
 "vim.opt.completeopt={ "menu", "menuone", "noselect" }
 
+" disable mouse because of troubles with clipboard on macos and tmux
+set mouse=
+
 set tabstop=4
 set expandtab
 set shiftwidth=4
