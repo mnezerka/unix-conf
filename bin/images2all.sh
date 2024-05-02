@@ -4,9 +4,11 @@
 set -e
 
 middle_max_size=2500
+doc_max_size=1600
 www_max_size=1000
 dir_middle="middle"
 dir_www="www"
+dir_doc="doc"
 
 function ensure_dir() {
     if [ ! -d "$1" ];then
@@ -68,27 +70,13 @@ function containsElement() {
     return 1
 }
 
-function fix_filename() {
-    if [ $# -ne 1 ]; then
-        echo "error: illegal number of params for fix_filename(filename)"
-        exit 1
-    fi
-
-    if [[ $actions == *"l"* ]]; then
-        lower=`echo $1 | tr "[:upper:]" "[:lower:]"`
-        echo $lower
-    else
-        echo $1
-    fi
-}
-
 function usage() {
     echo "Usage: $0 ACTION [FILE]..."
     echo
     echo "Where ACTION is string composed of:"
     echo "  m - resize images to middle size (longer side ${middle_max_size})"
     echo "  w - resize images to www size (longer side ${www_max_size})"
-    echo "  l - rename all files to lowercase before resizing"
+    echo "  d - resize images to documentation size (longer side ${doc_max_size})"
 }
 
 # MAIN
@@ -102,7 +90,7 @@ else
 fi
 
 
-if [[ ! "${actions}" =~ ^[mwl]+$ ]]; then
+if [[ ! "${actions}" =~ ^[mwd]+$ ]]; then
    echo "error: invalid ACTION '${actions}'"
    usage
    exit 2
@@ -123,6 +111,10 @@ if [[ $actions == *"w"* ]]; then
     ensure_dir www
 fi
 
+if [[ $actions == *"d"* ]]; then
+    ensure_dir doc
+fi
+
 for f in $@
 do
     echo "$f"
@@ -133,22 +125,16 @@ do
         continue
     fi
 
-    # rename file to lowercase if requested
-    if [[ $actions == *"l"* ]]; then
-        f_lower=`echo $f | tr "[:upper:]" "[:lower:]"`
-        if [[ "$f" != "$f_lower" ]]; then
-            echo "  .rename: $f -> $f_lower"
-            mv "$f" "$f_lower"
-            f=$f_lower
-        fi
-    fi
-
     if [[ $actions == *"m"* ]]; then
         resize $f $middle_max_size $dir_middle
     fi
 
     if [[ $actions == *"w"* ]]; then
         resize $f $www_max_size $dir_www
+    fi
+
+    if [[ $actions == *"d"* ]]; then
+        resize $f $doc_max_size $dir_doc
     fi
 
 done
