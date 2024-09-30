@@ -70,7 +70,7 @@ mkdir -p .config/nvim
 ln -s ~/unix-conf/nvim/init.vim .config/nvim/init.vim
 ```
 
-Start nvim and run command `:PlugInstall` to install all plugins
-echo "processing .bash_profile"
+Note: for first run - disable/remove part of the init.vim outside of plug section
 
+Start nvim and run command `:PlugInstall` to install all plugins
 
