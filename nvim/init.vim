@@ -28,13 +28,18 @@ Plug 'preservim/nerdtree'
 "Plug 'nvim-tree/nvim-tree.lua'
 
 " neovim color schemes
-Plug 'ray-x/starry.nvim'
+"Plug 'ray-x/starry.nvim'
+Plug 'sthendev/mariana.vim', {'run': 'make'}
 
 " syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " lsp
 Plug 'neovim/nvim-lspconfig'
+
+" telescope and it's dependences
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 
 " golang
 " Plug 'neovim/nvim-lspconfig'
@@ -80,7 +85,7 @@ set wildignore+=*/.git/*,*/tmp/*,*/node_modules/*,*/vendor/*,*.so,*.swp,*.zip,*p
 " let starry_disable_background = v:true
 
 " alternative is colorscheme mariana
-lua require('starry.functions').change_style("mariana")
+" lua require('starry.functions').change_style("mariana")
 
 " ---- NERDTree stuff
 map <F12> :NERDTreeToggle<CR>
@@ -189,4 +194,12 @@ nvim_lsp['gopls'].setup{
     usePlaceholders = true,
   }
 }
+
+-- setup telescope
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+vim.keymap.set('n', '<leader>fc', builtin.current_buffer_fuzzy_find, {})
 EOF
