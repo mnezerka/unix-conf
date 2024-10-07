@@ -48,7 +48,7 @@ function resize() {
 
     # resize without sharpening
     #disabled echo "Resizing $1 to $2x$2px -> $3/$1"
-    #disabled convert $1 -auto-orient -resize $2x$2 -quality 99 $3/$1
+    #disabled magick $1 -auto-orient -resize $2x$2 -quality 99 $3/$1
 
     # resize with sharpening
     # this is tip how to specify unsharp mask parameters based on
@@ -57,7 +57,7 @@ function resize() {
     sharp_filename=$1
     echo "  .resize $1 to $2x$2px -> $3/$sharp_filename"
     # radius,sigma,amount, treshold
-    convert $1 -auto-orient -resize $2x$2 -unsharp 0x0.55+0.45+0.008 -quality 99 $3/$sharp_filename
+    magick $1 -auto-orient -resize $2x$2 -unsharp 0x0.55+0.45+0.008 -quality 99 $3/$sharp_filename
 }
 
 function containsElement() {
