@@ -70,7 +70,7 @@ mkdir -p .config/nvim
 ln -s ~/unix-conf/nvim/init.vim .config/nvim/init.vim
 ```
 
-Note: for first run - disable/remove part of the init.vim outside of plug section
-
-Start nvim and run command `:PlugInstall` to install all plugins
-
+1. for first run - disable/remove/comment part of the init.vim outside of
+   plug section - it is enough to comment out the "lua <<EOF" section
+2. start nvim and run command `:PlugInstall` to install all plugins
+3. revert all changes in init.vim
