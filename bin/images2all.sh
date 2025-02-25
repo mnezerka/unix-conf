@@ -57,7 +57,7 @@ function resize() {
     sharp_filename=$1
     echo "  .resize $1 to $2x$2px -> $3/$sharp_filename"
     # radius,sigma,amount, treshold
-    magick $1 -auto-orient -resize $2x$2 -unsharp 0x0.55+0.45+0.008 -quality 99 $3/$sharp_filename
+    convert $1 -auto-orient -resize $2x$2 -unsharp 0x0.55+0.45+0.008 -quality 99 $3/$sharp_filename
 }
 
 function containsElement() {

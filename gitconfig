@@ -1,15 +1,60 @@
 # place this into your ~/.gitconfig  file
+#
+# tips: https://blog.gitbutler.com/how-git-core-devs-configure-git/
+#
 # [include]
 #    path = subdir/gitconfig
+
+[init]
+    defaultBranch = main
 
 [core]
     editor = vim
 
+[common]
+    # put the branch names in a column format so you can see more per screen
+    ui = auto
+
+[branch]
+    #  sorts the list by the most recent commit date (so probably more interesting at the top) rather than by alpha order
+    sort = -committerdate
+
+[tag]
+    sort = version:refname
+
 [diff]
     tool = vimdiff
 
+    # use best diff algorithm, much better than default one
+    algorithm = histogram
+
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+
 [difftool]
     prompt = false
+
+[push]
+    default = simple
+    autoSetupRemote = true
+    followTags = true
+
+[pull]
+    # run rebase instead of merge on git pull
+    rebase = true
+
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+
+[commit]
+    verbose = true
+
+[merge]
+    # adds section that shows how code did look like before both changes
+    conflictStyle = zdiff3
 
 [alias]
     lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
@@ -17,3 +62,5 @@
     lg3 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%h - (%ar) %C(bold)%s%C(reset) - %an%C(bold)%d%C(reset)' --all
 
     lg = !"git lg3"
+
+

@@ -20,9 +20,9 @@ function usage() {
 # MAIN
 
 if [ $# -gt 1 ]; then
-    ffmpeg -i $1 -filter:v scale=854x480 -c:a $2
+    #ffmpeg -i $1 -filter:v scale=854x480 -c:a copy $2
     # auto aspect ratio
-    # ffmpeg -i $1 -filter:v scale=854:-1 -c:a $2
+    ffmpeg -i $1 -filter:v scale=854:-1 -c:a copy $2
 else
     usage
     exit 1
