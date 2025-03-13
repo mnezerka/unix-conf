@@ -67,7 +67,9 @@ Create symlinks
 ```bash
 cd
 mkdir -p .config/nvim
-ln -s ~/unix-conf/nvim/init.vim .config/nvim/init.vim
+#ln -s ~/unix-conf/nvim/init.vim .config/nvim/init.vim
+ln -s ~/unix-conf/nvim/init.lua .config/nvim/init.lua
+ln -s ~/unix-conf/nvim/lua .config/nvim/lua
 ```
 
 1. for first run - disable/remove/comment part of the init.vim outside of
