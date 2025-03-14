@@ -9,6 +9,9 @@ endif
 " ---- configuration of plugin manager plug.vim
 call plug#begin()
 
+" solarized color scheme
+Plug 'maxmx03/solarized.nvim'
+
 " git
 Plug 'tpope/vim-fugitive'
 
@@ -203,6 +206,8 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fc', builtin.current_buffer_fuzzy_find, {})
 EOF
+
+colorscheme solarized
 
 " setup transparent background
 highlight Normal guibg=none
