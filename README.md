@@ -63,16 +63,13 @@ ln -s unix-conf/vim/.vimrc .vimrc
 
 ## NeoVim (nvim)
 
+Install "FiraCode Nerd Font" from https://www.nerdfonts.com/font-downloads
+
 Create symlinks
 ```bash
 cd
 mkdir -p .config/nvim
-#ln -s ~/unix-conf/nvim/init.vim .config/nvim/init.vim
 ln -s ~/unix-conf/nvim/init.lua .config/nvim/init.lua
 ln -s ~/unix-conf/nvim/lua .config/nvim/lua
 ```
 
-1. for first run - disable/remove/comment part of the init.vim outside of
-   plug section - it is enough to comment out the "lua <<EOF" section
-2. start nvim and run command `:PlugInstall` to install all plugins
-3. revert all changes in init.vim

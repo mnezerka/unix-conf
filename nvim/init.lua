@@ -1,17 +1,21 @@
 require("config.lazy")
 
+-- redefine Leader key
+vim.g.mapleader = ' '
+
+
+-- nvim tree open/close on F12
 vim.keymap.set('n', '<F12>',     ':NvimTreeToggle<CR>', { noremap = true })
 
 -- disable mouse because of troubles with clipboard on macos and tmux
-vim.o.mouse = false
+-- vim.o.mouse = 'todo'
 
 -- global options
-vim.o.wildmenu =  true
-vim.o.wildignore = '*/.git/*,*/tmp/*,*/node_modules/*,*/vendor/*,*.so,*.swp,*.zip,*pyc'
-vim.o.listchars = 'trail:@,tab:>-'
-vim.o.list = true
-vim.o.smarttab = true
-
+vim.opt.wildmenu =  true
+vim.opt.wildignore = { '*/.git/*', '*/tmp/*', '*/node_modules/*', '*/vendor/*', '*.so', '*.swp' , '*.zip' , '*pyc' }
+vim.opt.listchars = { trail = '@', tab = '>-' }
+vim.opt.list = true
+vim.opt.smarttab = true
 
 -- buffer options
 -- Set the tabstop and shiftwidth options to 4
@@ -28,9 +32,9 @@ vim.wo.foldmethod = 'indent'
 
 -- setup telescope
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>fc', builtin.current_buffer_fuzzy_find, {})
+vim.keymap.set('n', '<Leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<Leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<Leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<Leader>fh', builtin.help_tags, {})
+vim.keymap.set('n', '<Leader>fc', builtin.current_buffer_fuzzy_find, {})
 
