@@ -88,7 +88,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- golang: setup language server
-require('lspconfig').gopls.setup({
+vim.lsp.config('gopls', {
     single_file_support = true,
     on_attach = function(client, bufnr)
     print('golang language server attached')
