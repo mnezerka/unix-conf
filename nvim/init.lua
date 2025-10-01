@@ -6,6 +6,7 @@ vim.g.mapleader = ' '
 
 -- nvim tree open/close on F12
 vim.keymap.set('n', '<F12>',     ':NvimTreeToggle<CR>', { noremap = true })
+vim.cmd[[hi NvimTreeNormal guibg=NONE ctermbg=NONE]]
 
 -- disable mouse because of troubles with clipboard on macos and tmux
 -- vim.o.mouse = 'todo'
