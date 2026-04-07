@@ -7,13 +7,33 @@ alias vim="nvim"
 __git_ps1_info() {
     local branch
     branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || return
-    local status
-    if git diff --quiet 2>/dev/null && git diff --cached --quiet 2>/dev/null; then
-        status="✓"
-    else
-        status="*"
-    fi
-    echo " ($branch $status)"
+
+    local flags=""
+
+    # Staged changes (index)
+    git diff --cached --quiet 2>/dev/null || flags="${flags}+"
+
+    # Unstaged changes (working tree)
+    git diff --quiet 2>/dev/null || flags="${flags}!"
+
+    # Untracked files
+    [[ -n $(git ls-files --others --exclude-standard 2>/dev/null) ]] && flags="${flags}?"
+
+    # Stashed changes
+    git rev-parse --verify refs/stash &>/dev/null && flags="${flags}$"
+
+    # Unpushed commits (ahead of remote)
+    local ahead
+    ahead=$(git rev-list @{u}..HEAD 2>/dev/null | wc -l | tr -d ' ')
+    [[ "$ahead" -gt 0 ]] && flags="${flags}↑${ahead}"
+
+    # Unpulled commits (behind remote)
+    local behind
+    behind=$(git rev-list HEAD..@{u} 2>/dev/null | wc -l | tr -d ' ')
+    [[ "$behind" -gt 0 ]] && flags="${flags}↓${behind}"
+
+    [[ -n "$flags" ]] && flags=" ${flags}" || flags=" ✓"
+    echo " (${branch}${flags})"
 }
 
 export PS1='\[\e[38;5;117m\]\w\[\e[0m\]\[\e[38;5;221m\]$(__git_ps1_info)\[\e[0m\] \$ '

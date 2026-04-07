@@ -4,7 +4,8 @@ environment. So be careful :-)
 
 ## Bash config unification
 
-create ~/.bash_profile` as:
+Create ~/.bash_profile` as:
+
 ```bash
 # run .bashrc for both login and non-login shells
 if [ -f $HOME/.bashrc ]; then
@@ -12,7 +13,13 @@ if [ -f $HOME/.bashrc ]; then
 fi
 ```
 
-put all configuration into `~/.bashrc`
+Put all configuration into `~/.bashrc`referncing one from this repo:
+
+```bash
+...
+source ~/unix-conf/shell/my_bashrc
+...
+```
 
 ## Shell enhancements
 
