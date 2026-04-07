@@ -1,0 +1,19 @@
+echo "processing my_bashrc"
+
+alias ll="ls -alF"
+alias vim="nvim"
+
+
+__git_ps1_info() {
+    local branch
+    branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || return
+    local status
+    if git diff --quiet 2>/dev/null && git diff --cached --quiet 2>/dev/null; then
+        status="✓"
+    else
+        status="*"
+    fi
+    echo " ($branch $status)"
+}
+
+export PS1='\[\e[38;5;117m\]\w\[\e[0m\]\[\e[38;5;221m\]$(__git_ps1_info)\[\e[0m\] \$ '
