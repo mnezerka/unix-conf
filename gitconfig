@@ -62,5 +62,6 @@
     lg3 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%h - (%ar) %C(bold)%s%C(reset) - %an%C(bold)%d%C(reset)' --all
 
     lg = !"git lg3"
-
+    ld = rev-list --left-right --count main...
+    dist = "!f() { git rev-list --left-right --count \"${1:-main}\"...HEAD; }; f"
 
