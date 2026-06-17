@@ -37,3 +37,5 @@ __git_ps1_info() {
 }
 
 export PS1='\[\e[38;5;117m\]\w\[\e[0m\]\[\e[38;5;221m\]$(__git_ps1_info)\[\e[0m\] \$ '
+
+export PATH="$PATH:~/bin"
