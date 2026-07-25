@@ -43,6 +43,11 @@ vim.keymap.set('n', '<Leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<Leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<Leader>fc', builtin.current_buffer_fuzzy_find, {})
 
+-- Telescope LSP keymaps
+vim.keymap.set('n', 'gd', require('telescope.builtin').lsp_definitions, { desc = "Telescope Definitions" })
+vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, { desc = "Telescope References" })
+vim.keymap.set('n', 'gi', require('telescope.builtin').lsp_implementations, { desc = "Telescope Implementations" })
+
 -- colorscheme from plugin
 require('onedark').load()
 
@@ -120,3 +125,10 @@ cmp.setup({
     end,
   },
 })
+
+-- Keymap to open the error popup (often mapped to <leader>e or gl)
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Show line diagnostics" })
+
+-- Open a list of all diagnostics for the current buffer
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+

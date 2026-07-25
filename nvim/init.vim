@@ -43,6 +43,10 @@ Plug 'neovim/nvim-lspconfig'
 " telescope and it's dependences
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
+"
+" python developmentand it's dependences
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
 
 " golang
 " Plug 'neovim/nvim-lspconfig'
@@ -196,6 +200,27 @@ nvim_lsp['gopls'].setup{
   init_options = {
     usePlaceholders = true,
   }
+}
+
+-- Python
+nvim_lsp['pyright'].setup{
+    settings = {
+        python = {
+            analysis = {
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = "workspace", -- Analyzes the whole project, not just open files
+            },
+        },
+    },
+}
+-- Python - Configure Ruff for fast linting diagnostics
+nvim_lsp['ruff'].setup{
+    init_options = {
+        settings = {
+            args = {},
+        },
+    },
 }
 
 -- setup telescope
