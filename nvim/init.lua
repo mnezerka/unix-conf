@@ -3,7 +3,6 @@ require("config.lazy")
 -- redefine Leader key
 vim.g.mapleader = ' '
 
-
 -- nvim tree open/close on F12
 vim.keymap.set('n', '<F12>',     ':NvimTreeToggle<CR>', { noremap = true })
 vim.cmd[[hi NvimTreeNormal guibg=NONE ctermbg=NONE]]
@@ -34,19 +33,6 @@ vim.o.expandtab = true
 -- window options
 vim.wo.number = true
 vim.wo.foldmethod = 'indent'
-
--- setup telescope
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<Leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<Leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<Leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<Leader>fh', builtin.help_tags, {})
-vim.keymap.set('n', '<Leader>fc', builtin.current_buffer_fuzzy_find, {})
-
--- Telescope LSP keymaps
-vim.keymap.set('n', 'gd', require('telescope.builtin').lsp_definitions, { desc = "Telescope Definitions" })
-vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, { desc = "Telescope References" })
-vim.keymap.set('n', 'gi', require('telescope.builtin').lsp_implementations, { desc = "Telescope Implementations" })
 
 -- colorscheme from plugin
 require('onedark').load()
