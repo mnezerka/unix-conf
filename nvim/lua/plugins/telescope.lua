@@ -49,7 +49,7 @@ return {
         { '<Leader>fh', function() require('telescope.builtin').help_tags() end, desc = "Help Tags" },
         { '<Leader>fc', function() require('telescope.builtin').current_buffer_fuzzy_find() end, desc = "Fuzzy Find in Current Buffer"},
 
-        { '<Leader>cc', show_my_commands, desc = "My Commands" },
+        { '<Leader>mc', show_my_commands, desc = "My Commands" },
         { '<Leader>ch', function() require('telescope.builtin').command_history() end, desc = "Command History"},
 
         { '<Leader>ss', function() require('telescope.builtin').spell_suggest() end, desc = "Spell Suggest"},
