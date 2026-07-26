@@ -11,7 +11,14 @@ local show_my_commands = function()
     local actions = require("telescope.actions")
     local action_state = require("telescope.actions.state")
 
-    pickers.new(require("telescope.themes").get_dropdown({}), {
+    pickers.new(require("telescope.themes").get_dropdown({
+        sorting_strategy = "ascending",
+        layout_config = {
+            prompt_position = "top",
+            anchor = "N",
+            mirror = true,
+        },
+    }), {
         prompt_title = "My Commands",
         finder = finders.new_table({
             results = my_commands,
@@ -42,29 +49,31 @@ return {
         { '<Leader>fh', function() require('telescope.builtin').help_tags() end, desc = "Help Tags" },
         { '<Leader>fc', function() require('telescope.builtin').current_buffer_fuzzy_find() end, desc = "Fuzzy Find in Current Buffer"},
 
-        { '<Leader>gc', show_my_commands, desc = "My Commands" },
+        { '<Leader>cc', show_my_commands, desc = "My Commands" },
+        { '<Leader>ch', function() require('telescope.builtin').command_history() end, desc = "Command History"},
+
+        { '<Leader>ss', function() require('telescope.builtin').spell_suggest() end, desc = "Spell Suggest"},
 
         {  '<Leader>gd', function() require('telescope.builtin').lsp_definitions() end,  desc = "Telescope Definitions" },
         {  '<Leader>gr', function() require('telescope.builtin').lsp_references() end, desc = "Telescope References" },
         {  '<Leader>gi', function() require('telescope.builtin').lsp_implementations() end, desc = "Telescope Implementations" },
+
+        { '<Leader>gs', function() require('telescope.builtin').git_status() end, desc = "Git Status"},
+        { '<Leader>gc', function() require('telescope.builtin').git_commits() end, desc = "Git Commits"},
     },
 
     config = function()
         local telescope = require("telescope")
 
-        -- Setup built-in picker defaults
         telescope.setup({
-            pickers = {
-                find_files = {
-                    theme = "dropdown",
-                    sorting_strategy = "ascending",
-                    layout_config = {
-                        prompt_position = "top",
-                        anchor = "N",
-                        mirror = true,
-                    },
+            defaults = require("telescope.themes").get_dropdown({
+                sorting_strategy = "ascending",
+                layout_config = {
+                    prompt_position = "top",
+                    anchor = "N",
+                    mirror = true,
                 },
-            },
+            }),
         })
     end,
 }
