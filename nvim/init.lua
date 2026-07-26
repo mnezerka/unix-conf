@@ -118,3 +118,6 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Show line 
 -- Open a list of all diagnostics for the current buffer
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
+-- Open the Code Action menu (Quick Fix, Organize Imports, etc.)
+-- use e.g. when python code contains some warnings and errors, this can fix it automatically
+vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { desc = "Code Action / Quick Fix" })
