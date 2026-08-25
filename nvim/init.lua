@@ -121,3 +121,8 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagn
 -- Open the Code Action menu (Quick Fix, Organize Imports, etc.)
 -- use e.g. when python code contains some warnings and errors, this can fix it automatically
 vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { desc = "Code Action / Quick Fix" })
+
+
+vim.keymap.set('n', '<leader>t', ':NvimTreeToggle<CR>', { noremap = true })
+
+

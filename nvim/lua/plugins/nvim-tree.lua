@@ -8,6 +8,9 @@ return {
         dotfiles = false,
         git_ignored = false,
       },
+      view = {
+          width = 40,
+      },
     }
   end,
 }
